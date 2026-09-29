@@ -1,0 +1,12 @@
+#!/bin/bash
+
+sbatch slurm/conll2003/run_12_main_full_riskyseeds.slurm
+sbatch slurm/mnli/run_12_main_full_riskyseeds_lr5e4.slurm
+sbatch slurm/mnli/run_12_main_full_riskyseeds_lr3e4.slurm
+sbatch slurm/squad/run_12_main_full_riskyseeds_lr5e4.slurm
+sbatch slurm/squad/run_12_main_full_riskyseeds_lr3e4.slurm
+
+sbatch slurm/conll2003/run_11_main_attention_riskyseeds.slurm
+sbatch slurm/mnli/run_11_main_attention_riskyseeds_lr5e4.slurm
+sbatch slurm/mnli/run_11_main_attention_riskyseeds_lr3e4.slurm
+sbatch slurm/squad/run_11_main_attention_riskyseeds_lr3e4.slurm
