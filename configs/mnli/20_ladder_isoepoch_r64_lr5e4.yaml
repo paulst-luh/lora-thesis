@@ -1,0 +1,42 @@
+include: _task.yaml
+
+experiment_group: mnli_prompting
+experiment_name: mnli_prompting_ladder_isoepoch_r64_lr5e4
+
+#
+# Diagnostic follow-up: the original ladder's lr grid tops out at 3e-4
+# (20_ladder_isoepoch.yaml) -- it never tests 5e-4, the learning rate
+# responsible for the worst collapse rates found anywhere else in this
+# study (see the 12_main_*_riskyseeds configs, up to 60% collapse at
+# n=10). The ladder's clean "iso_step prevents collapse" result
+# (0/480 across the full+attention ladders) is therefore only
+# demonstrated up to 3e-4. This checks whether that holds at 5e-4 too,
+# scoped to r=64 (the riskiest rank) rather than re-running the full
+# 5-rank grid at a third learning rate.
+#
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/mnli/prompting_ladder_isoepoch_r64_lr5e4
+
+  adaptation: lora
+  lora.target: attention
+  lora.r: 64
+  lora.alpha: 128
+
+  training.learning_rate: 5e-4
+
+  training.epochs: 3

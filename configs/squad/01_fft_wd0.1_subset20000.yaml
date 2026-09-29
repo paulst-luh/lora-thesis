@@ -1,0 +1,36 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_fft_wd0.1_subset20000
+
+#
+# Diagnostic follow-up: FFT already reaches near-zero train_loss at
+# subset_size=5000/3 epochs (see conversation record) -- so more
+# *passes* over the same 5000 examples (01_fft_wd0.1_epochs6.yaml)
+# probably won't help. This instead gives FFT more DISTINCT examples:
+# subset_size=20000 at the same 3 epochs, so total optimizer steps
+# scale with the extra data rather than repeating it. squad's training
+# pool (87599 examples) comfortably supports this.
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/squad/prompting_fft_wd0.1_subset20000
+
+  adaptation: fft
+
+  dataset.subset_size: 20000
+  training.epochs: 3
+  training.weight_decay: 0.1

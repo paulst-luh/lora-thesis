@@ -1,0 +1,70 @@
+include: _task.yaml
+
+experiment_group: mnli_prompting
+experiment_name: mnli_prompting_ladder_isoepoch
+
+grid:
+
+  #
+  # The dataset-size axis this ladder isolates. Nesting (1k subset of
+  # 5k subset of 20k subset of 50k) is guaranteed by nested_subset
+  # sharing one permutation per (total_len, data_seed) -- see
+  # src/utils/sampling.py. data_seed is fixed in _base.yaml, never
+  # part of this grid, which is what keeps the nesting property intact
+  # across every other axis varied here.
+  #
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  #
+  # alpha = 2r only (not the 1x/2x split used by the main sweep) --
+  # the ladder isolates dataset size, not scaling_ratio, so it holds
+  # scaling_ratio fixed at 2 throughout.
+  #
+
+  lora_config:
+    - {r: 4, alpha: 8}
+    - {r: 8, alpha: 16}
+    - {r: 16, alpha: 32}
+    - {r: 32, alpha: 64}
+    - {r: 64, alpha: 128}
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/mnli/prompting_ladder_isoepoch
+
+  adaptation: lora
+
+  #
+  # Deliberately NOT crossed with target modules (qv/attention/full)
+  # like the main sweep -- always "attention" here, so this ladder
+  # isolates dataset size as the only varying structural factor
+  # alongside rank/alpha/lr/seed.
+  #
+
+  lora.target: attention
+
+  #
+  # No training.regime set -> defaults to iso_epoch (see
+  # resolve_schedule in src/utils/training.py): fixed epoch count,
+  # optimizer steps scale with subset_size. The 50k run therefore sees
+  # ~50x the optimizer steps of the 1k run at the same epoch count --
+  # compare against 21_ladder_isostep.yaml, which holds steps fixed
+  # instead, to separate "more data" from "more steps" as competing
+  # explanations for any effective-rank trend seen across this ladder.
+  #
+
+  training.epochs: 3

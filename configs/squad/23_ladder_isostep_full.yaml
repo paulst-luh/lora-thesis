@@ -1,0 +1,44 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_ladder_isostep_full
+
+#
+# Extension of 21_ladder_isostep.yaml to lora.target=full -- see
+# mnli/22_ladder_isoepoch_full.yaml for the rationale. Otherwise
+# identical grid and iso_step mechanics to 21_ladder_isostep.yaml.
+#
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  lora_config:
+    - {r: 4, alpha: 8}
+    - {r: 8, alpha: 16}
+    - {r: 16, alpha: 32}
+    - {r: 32, alpha: 64}
+    - {r: 64, alpha: 128}
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/squad/prompting_ladder_isostep_full
+
+  adaptation: lora
+  lora.target: full
+
+  training.regime: iso_step
+  training.max_steps: 938

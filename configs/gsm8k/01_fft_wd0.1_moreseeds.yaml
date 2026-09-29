@@ -1,0 +1,43 @@
+include: _task.yaml
+
+experiment_group: gsm8k_prompting
+experiment_name: gsm8k_prompting_fft_wd0.1_moreseeds
+
+#
+# Diagnostic follow-up: at mnli lr=3e-5 (wd=0.01), one of 3 seeds
+# diverged to near-chance performance while its two siblings were
+# fine -- with only 3 seeds, a single bad draw swings the mean a lot,
+# and there's no way to tell a real effect from one unlucky run. These
+# are 7 NEW seeds (45-51), not a repeat of 42/43/44 -- combined with
+# 01_fft_wd0.1.yaml's 3 seeds, that's 10 total per (lr) cell once both
+# are run. Anchored on weight_decay=0.1 (not also re-tested at 0.01)
+# since that's the setting this investigation is converging on; if
+# 01_fft_wd0.1.yaml doesn't pan out, wd=0.01 can get the same
+# more-seeds treatment later.
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+    - 50
+    - 51
+
+fixed:
+
+  output.root: results/gsm8k/prompting_fft_wd0.1_moreseeds
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 3
+  training.weight_decay: 0.1

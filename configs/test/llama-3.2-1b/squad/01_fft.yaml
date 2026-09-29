@@ -1,0 +1,20 @@
+include:
+  - ../../../squad/_task.yaml
+  - ../_model.yaml
+
+experiment_group: llama-3.2-1b_test
+experiment_name: llama-3.2-1b_test_squad_01_fft
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/test/llama-3.2-1b/squad/01_fft
+
+  adaptation: fft
+
+  dataset.subset_size: 200
+  training.epochs: 1
+  training.learning_rate: 1e-05

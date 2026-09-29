@@ -1,0 +1,24 @@
+include:
+  - ../../../mnli/_task.yaml
+  - ../_model.yaml
+
+experiment_group: llama-3.1-8b-instruct_outlook
+experiment_name: llama-3.1-8b-instruct_outlook_mnli_01_fft
+
+# 1e-5, not the main-sweep LoRA winner (1e-4) -- see module docstring:
+# FFT's own grid never included 1e-4, and this study's own FFT config
+# comment warns it diverges at LoRA-scale learning rates.
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/outlook/llama-3.1-8b-instruct/mnli/01_fft
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 3
+  training.learning_rate: 1e-5

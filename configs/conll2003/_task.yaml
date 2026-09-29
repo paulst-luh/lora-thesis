@@ -1,0 +1,17 @@
+include: ../_base.yaml
+
+fixed:
+
+  #
+  # Your study table calls this task "ner"; this codebase's actual key
+  # is "token_classification" (see DATASET_META in src/data/loader.py,
+  # and configs/conll2003/qv.yaml's existing head-pipeline config,
+  # which uses the same value). Using the schema's real value here,
+  # not inventing a new one -- flagged separately as a schema mismatch.
+  #
+
+  task.name: token_classification
+  dataset.name: conll2003
+
+  dataset.max_seq_length: 512
+  eval.max_new_tokens: 128

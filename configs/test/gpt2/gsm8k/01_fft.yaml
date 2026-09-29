@@ -1,0 +1,20 @@
+include:
+  - ../../../gsm8k/_task.yaml
+  - ../_model.yaml
+
+experiment_group: gpt2_test
+experiment_name: gpt2_test_gsm8k_01_fft
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/test/gpt2/gsm8k/01_fft
+
+  adaptation: fft
+
+  dataset.subset_size: 200
+  training.epochs: 1
+  training.learning_rate: 1e-05

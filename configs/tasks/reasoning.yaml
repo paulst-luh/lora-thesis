@@ -1,0 +1,21 @@
+#
+# Per-task override, layered between _base.yaml and each experiment
+# config via that config's `include:` list. Currently only GSM8K maps
+# to task=reasoning.
+#
+# GSM8K's chain-of-thought completions run longer than the other
+# prompting tasks' single-label/short-span answers, hence the wider
+# max_seq_length and max_new_tokens. Evaluation is greedy and fixed at
+# 500 held-out examples regardless of subset_size or seed (see
+# fixed_eval_subset in src/utils/sampling.py) so every ladder rung and
+# every seed is scored on the same population.
+#
+
+fixed:
+
+  dataset.max_seq_length: 768
+
+  eval.max_new_tokens: 256
+  eval.do_sample: false
+
+  dataset.eval_size: 500

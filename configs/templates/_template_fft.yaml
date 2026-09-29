@@ -1,0 +1,100 @@
+#
+# TEMPLATE -- full fine-tuning (adaptation: fft, every parameter trainable).
+#
+# HOW TO USE:
+#   1. Copy this file to configs/<dataset>/<your_name>.yaml, e.g.
+#      cp configs/templates/_template_fft.yaml configs/gsm8k/my_fft.yaml
+#      (must land inside a real configs/<dataset>/ directory -- the
+#      `include: _task.yaml` line below is resolved relative to wherever
+#      this file itself lives, and only configs/<dataset>/_task.yaml
+#      actually exists.)
+#   2. Fill in every <PLACEHOLDER> below.
+#   3. Verify it before submitting anything:
+#      python -m scripts.dry_run_configs configs/<dataset>/<your_name>.yaml
+#   4. See configs/mnli/01_fft.yaml for a filled-in, already-running example
+#      of this exact template.
+#
+# CONFIG LAYERING (see docs/experimental_design_context.md §3.1 for the
+# full mechanism): `include: _task.yaml` pulls in configs/<dataset>/_task.yaml,
+# which itself includes configs/_base.yaml. Together those two already set
+# every one of the following -- you do NOT need to repeat them here unless
+# you want to override one for this specific run:
+#
+#   From configs/_base.yaml (shared by every run in this study):
+#     model.name             -- currently "qwen2-7b" (shorthand for
+#                                models/qwen2-7b; see src/models/base_model.py
+#                                -- any bare name with no "/" resolves to
+#                                models/<name>; a path with "/" or an HF
+#                                hub id like "Qwen/Qwen3-0.6B-Base" is used
+#                                as-is)
+#     model.dtype             -- optional, defaults to "bfloat16" if unset
+#     pipeline.type            -- "prompting" (causal-LM, free-text
+#                                 completion) is what this study uses.
+#     training.optimizer       -- "paged_adamw_8bit"
+#     training.batch_size      -- 8
+#     training.grad_accum      -- 2
+#     training.weight_decay    -- 0.01
+#     training.warmup_ratio    -- 0.03
+#     training.lr_scheduler_type -- "cosine"
+#     dataset.data_seed        -- 1234, fixed across the whole study (controls
+#                                 WHICH examples get sampled into a subset;
+#                                 do not confuse with `seed` below, which
+#                                 controls training stochasticity/init)
+#     eval.do_sample           -- false (greedy decoding)
+#     dataset.eval_size        -- 500 (fixed-size held-out eval set, same
+#                                 population regardless of subset_size/seed)
+#
+#   From configs/<dataset>/_task.yaml (dataset-specific):
+#     task.name                -- classification / qa / token_classification
+#                                 / reasoning
+#     dataset.name              -- mnli / squad / conll2003 / gsm8k
+#     dataset.max_seq_length
+#     eval.max_new_tokens
+#
+# Every key below this point is NOT inherited -- it must be set here.
+#
+
+include: _task.yaml
+
+experiment_group: <DATASET>_prompting   # e.g. gsm8k_prompting -- keep the
+                                          # "<dataset>_prompting" form if you
+                                          # want this run picked up by
+                                          # scripts/build_final_csv.py's
+                                          # aggregation into
+                                          # results/prompting_study_final.csv;
+                                          # use anything else to deliberately
+                                          # keep a one-off run OUT of that
+                                          # curated study export.
+
+experiment_name: <DATASET>_prompting_<YOUR_BLOCK_NAME>   # the
+                                          # "<dataset>_prompting_" prefix is
+                                          # stripped to derive the `block`
+                                          # column when results are
+                                          # aggregated (docs/experimental_design_context.md §3.8)
+
+grid:
+
+  # Every experiment file needs at least one grid key. FFT's own learning
+  # rate range is deliberately far below LoRA's -- full fine-tuning at
+  # LoRA-scale rates (1e-4 and up) diverges. This study's own FFT grid used
+  # 1e-5 / 3e-5 / 5e-5; treat those as a reasonable starting point/example,
+  # not a hard requirement.
+
+  training.learning_rate:
+    - 1e-5
+    # - 3e-5
+    # - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/<DATASET>/<YOUR_BLOCK_NAME>   # e.g. results/gsm8k/my_fft
+
+  adaptation: fft
+
+  dataset.subset_size: <N>       # e.g. 5000 -- the main study's own default
+  training.epochs: <N>           # e.g. 3

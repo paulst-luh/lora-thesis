@@ -1,0 +1,39 @@
+include: _task.yaml
+
+experiment_group: gsm8k_prompting
+experiment_name: gsm8k_prompting_fft_wd0.1_subset7000
+
+#
+# Diagnostic follow-up: FFT already reaches near-zero train_loss at
+# subset_size=5000/3 epochs (see conversation record) -- so more
+# *passes* over the same 5000 examples (01_fft_wd0.1_epochs6.yaml)
+# probably won't help. This instead gives FFT more DISTINCT examples
+# at the same 3 epochs. GSM8K's entire training pool is only 7473
+# examples (checked directly via datasets.load_from_disk), so this
+# diagnostic is inherently weak here -- 7000 is only ~1.4x the
+# original 5000, not the 4x mnli/squad get. Worth running for
+# consistency, but don't expect it to be very informative; there just
+# isn't much more distinct GSM8K training data to give FFT.
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/gsm8k/prompting_fft_wd0.1_subset7000
+
+  adaptation: fft
+
+  dataset.subset_size: 7000
+  training.epochs: 3
+  training.weight_decay: 0.1

@@ -1,0 +1,42 @@
+include: _task.yaml
+
+experiment_group: conll2003_prompting
+experiment_name: conll2003_prompting_main_full_riskyseeds
+
+#
+# Diagnostic follow-up, same logic as the FFT moreseeds round: at
+# (r=16,alpha=32,lr=5e-4) and (r=32,alpha=64,lr=5e-4) for lora.target=full,
+# the existing 3-seed main sweep already shows a partial-collapse
+# signature (only 1 of 3 seeds healthy in each case) -- with only 3
+# seeds there's no way to tell "reliably bad" from "one/two unlucky
+# draws". These are 7 NEW seeds (45-51), not repeats of 42/43/44 --
+# combined with 12_main_full.yaml's 3 seeds, that's 10 total per cell,
+# matching the FFT moreseeds diagnostic exactly.
+#
+
+grid:
+
+  lora_config:
+    - {r: 16, alpha: 32}
+    - {r: 32, alpha: 64}
+
+  seed:
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+    - 50
+    - 51
+
+fixed:
+
+  output.root: results/conll2003/prompting_main_full_riskyseeds
+
+  adaptation: lora
+  lora.target: full
+
+  training.learning_rate: 5e-4
+
+  dataset.subset_size: 5000
+  training.epochs: 3

@@ -1,0 +1,37 @@
+include: _task.yaml
+
+experiment_group: mnli_prompting
+experiment_name: mnli_prompting_zeroshot
+
+grid:
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/mnli/prompting_zeroshot
+
+  adaptation: none
+
+  #
+  # adaptation: none skips training (src/train.py), but the training
+  # split is still tokenized beforehand regardless of adaptation --
+  # pin subset_size small so that unused step doesn't tokenize this
+  # dataset's entire training split for a run that never trains on it.
+  #
+
+  dataset.subset_size: 1
+
+  #
+  # Never actually read: adaptation: none means trainer.train() is
+  # never called. Still required because build_training_args() always
+  # constructs TrainingArguments up front (src/utils/training.py), and
+  # TrainingArguments needs a valid learning_rate/epochs regardless of
+  # whether training runs.
+  #
+
+  training.learning_rate: 5e-5
+  training.epochs: 1

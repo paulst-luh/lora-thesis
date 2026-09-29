@@ -1,0 +1,38 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_fft_wd0.1_epochs6
+
+#
+# Diagnostic follow-up: FFT was already reaching low train_loss at 3
+# epochs (see conversation record), so more epochs alone probably
+# won't move the needle -- it isn't underfitting, it's a generalization
+# question. But it's cheap to check once weight_decay is corrected
+# (01_fft_wd0.1.yaml), in case stronger regularization changes how the
+# loss/metric curve behaves over a longer schedule. Only the epoch
+# count changes vs 01_fft_wd0.1.yaml -- subset_size and the
+# learning-rate grid are unchanged, so this isolates the epoch-budget
+# question alone.
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/squad/prompting_fft_wd0.1_epochs6
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 6
+  training.weight_decay: 0.1

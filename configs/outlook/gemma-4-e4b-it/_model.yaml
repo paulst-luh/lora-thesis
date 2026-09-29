@@ -1,0 +1,11 @@
+#
+# Model override for the gemma-4-e4b-it outlook probe -- included last (after
+# the dataset _task.yaml) by every block config in this directory tree,
+# so this is the only place model.name needs to change to point the
+# whole probe at a different checkpoint. See models/gemma-4-e4b-it/ (downloaded
+# via scripts/aggregate_other_models.py's sibling download script).
+#
+
+fixed:
+
+  model.name: gemma-4-e4b-it

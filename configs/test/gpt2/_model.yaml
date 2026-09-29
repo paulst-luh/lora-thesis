@@ -1,0 +1,12 @@
+#
+# Model override for the gpt2 smoke-test suite -- included
+# last (after the dataset _task.yaml) by every block config in this
+# directory tree, so this is the only place model.name needs to
+# change to test a different checkpoint.
+#
+# Already downloaded and verified to load through load_model().
+#
+
+fixed:
+
+  model.name: gpt2

@@ -1,0 +1,33 @@
+include: _task.yaml
+
+experiment_group: conll2003_prompting
+experiment_name: conll2003_prompting_fft
+
+grid:
+
+  #
+  # Deliberately the FFT-appropriate low range, not the LoRA range
+  # used by the 1x_main_* files -- full fine-tuning at LoRA-scale
+  # learning rates (1e-4 and above) diverges. A broken FFT baseline
+  # would invalidate every LoRA-vs-FFT comparison this study exists
+  # to make.
+  #
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/conll2003/prompting_fft
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 3

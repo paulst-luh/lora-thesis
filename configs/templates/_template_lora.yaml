@@ -1,0 +1,147 @@
+#
+# TEMPLATE -- LoRA fine-tuning (adaptation: lora).
+#
+# HOW TO USE:
+#   1. Copy this file to configs/<dataset>/<your_name>.yaml, e.g.
+#      cp configs/templates/_template_lora.yaml configs/mnli/my_lora.yaml
+#      (must land inside a real configs/<dataset>/ directory -- the
+#      `include: _task.yaml` line below is resolved relative to wherever
+#      this file itself lives, and only configs/<dataset>/_task.yaml
+#      actually exists.)
+#   2. Fill in every <PLACEHOLDER> below.
+#   3. Verify it before submitting anything:
+#      python -m scripts.dry_run_configs configs/<dataset>/<your_name>.yaml
+#   4. See configs/mnli/10_main_qv.yaml (or 11_main_attention.yaml /
+#      12_main_full.yaml) for a filled-in, already-running example of this
+#      exact template.
+#
+# CONFIG LAYERING (see docs/experimental_design_context.md §3.1 for the
+# full mechanism): `include: _task.yaml` pulls in configs/<dataset>/_task.yaml,
+# which itself includes configs/_base.yaml. Together those two already set
+# every one of the following -- you do NOT need to repeat them here unless
+# you want to override one for this specific run:
+#
+#   From configs/_base.yaml (shared by every run in this study):
+#     model.name             -- currently "qwen2-7b" (shorthand for
+#                                models/qwen2-7b; see src/models/base_model.py
+#                                -- any bare name with no "/" resolves to
+#                                models/<name>; a path with "/" or an HF
+#                                hub id like "Qwen/Qwen3-0.6B-Base" is used
+#                                as-is)
+#     model.dtype             -- optional, defaults to "bfloat16" if unset
+#     pipeline.type            -- "prompting" (causal-LM, free-text
+#                                 completion) is what this study uses.
+#     training.optimizer       -- "paged_adamw_8bit"
+#     training.batch_size      -- 8
+#     training.grad_accum      -- 2
+#     training.weight_decay    -- 0.01
+#     training.warmup_ratio    -- 0.03
+#     training.lr_scheduler_type -- "cosine"
+#     dataset.data_seed        -- 1234, fixed across the whole study (controls
+#                                 WHICH examples get sampled into a subset;
+#                                 do not confuse with `seed` below, which
+#                                 controls training stochasticity/init, e.g.
+#                                 LoRA's own random init and dropout)
+#     eval.do_sample           -- false (greedy decoding)
+#     dataset.eval_size        -- 500 (fixed-size held-out eval set, same
+#                                 population regardless of subset_size/seed)
+#
+#   From configs/<dataset>/_task.yaml (dataset-specific):
+#     task.name                -- classification / qa / token_classification
+#                                 / reasoning
+#     dataset.name              -- mnli / squad / conll2003 / gsm8k
+#     dataset.max_seq_length
+#     eval.max_new_tokens
+#
+# Every key below this point is NOT inherited -- it must be set here.
+#
+
+include: _task.yaml
+
+experiment_group: <DATASET>_prompting   # e.g. mnli_prompting -- keep the
+                                          # "<dataset>_prompting" form if you
+                                          # want this run picked up by
+                                          # scripts/build_final_csv.py's
+                                          # aggregation into
+                                          # results/prompting_study_final.csv;
+                                          # use anything else to deliberately
+                                          # keep a one-off run OUT of that
+                                          # curated study export.
+
+experiment_name: <DATASET>_prompting_<YOUR_BLOCK_NAME>   # the
+                                          # "<dataset>_prompting_" prefix is
+                                          # stripped to derive the `block`
+                                          # column when results are
+                                          # aggregated (docs/experimental_design_context.md §3.8)
+
+grid:
+
+  #
+  # rank (r) and alpha are paired via the special `lora_config:` grid key
+  # (src/utils/config.py:generate_experiments) rather than being two
+  # separate grid keys crossed freely -- that keeps scaling_ratio
+  # (alpha/rank) restricted to exactly the values you intend (usually 1 or
+  # 2), instead of every rank x every alpha producing unintended ratios.
+  # Each entry below expands directly into lora.r / lora.alpha; do not
+  # also set those under fixed: if you use this key.
+  #
+
+  lora_config:
+    - {r: 8, alpha: 8}      # scaling_ratio 1
+    - {r: 8, alpha: 16}     # scaling_ratio 2
+    # - {r: 16, alpha: 16}
+    # - {r: 16, alpha: 32}
+    # - {r: 32, alpha: 32}
+    # - {r: 32, alpha: 64}
+    # - {r: 64, alpha: 128}
+
+  training.learning_rate:
+    - 1e-4
+    # - 3e-4
+    # - 5e-4   # the study's own riskiest LR -- collapse risk rises sharply
+               # here, especially for lora.target: full/attention at high
+               # rank (docs/experimental_design_context.md §7.2, §8.2, §8.3)
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/<DATASET>/<YOUR_BLOCK_NAME>   # e.g. results/mnli/my_lora
+
+  adaptation: lora
+
+  #
+  # Which modules get a LoRA adapter (src/models/lora_setup.py:LORA_TARGETS).
+  # More coverage = more capacity but also more collapse risk at higher
+  # learning rates (docs/experimental_design_context.md §7.2):
+  #   qv:         q_proj, v_proj                                          (lowest capacity, most reliable)
+  #   attention:  q_proj, k_proj, v_proj, o_proj
+  #   full:       q_proj, k_proj, v_proj, o_proj, up_proj, down_proj, gate_proj  (highest capacity, least reliable)
+  #
+  # GPT-2 checkpoints use a different table (LORA_TARGETS_GPT2, same file)
+  # because its Q/K/V are one fused matrix -- "qv" there is NOT a true qv
+  # split (it also adapts K). Irrelevant for any Llama-style model (Qwen,
+  # Llama, Gemma, DeepSeek's dense checkpoints), which all share the naming
+  # above.
+  #
+
+  lora.target: <qv|attention|full>
+
+  dataset.subset_size: <N>       # e.g. 5000 -- the main study's own default
+  training.epochs: <N>           # e.g. 3
+
+  #
+  # OPTIONAL / ADVANCED -- uncomment if you specifically want to hold
+  # optimizer step count fixed instead of epoch count (e.g. for a
+  # dataset-size ladder: see docs/experimental_design_context.md §3.5,
+  # §7.1). Leave both commented out for the normal, default behavior
+  # (fixed epoch count, steps scale with dataset.subset_size).
+  #
+  # training.regime: iso_step
+  # training.max_steps: <N>      # required whenever training.regime is
+  #                               # iso_step; training.epochs above is then
+  #                               # ignored (transformers.Trainer prefers
+  #                               # max_steps whenever it's set > 0)

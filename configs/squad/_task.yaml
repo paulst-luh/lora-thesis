@@ -1,0 +1,16 @@
+include: ../_base.yaml
+
+fixed:
+
+  task.name: qa
+  dataset.name: squad
+
+  #
+  # Meaningfully larger than the other three tasks: prompts here
+  # include a full passage plus a question, not a single sentence
+  # pair or short text span.
+  #
+
+  dataset.max_seq_length: 1024
+
+  eval.max_new_tokens: 32

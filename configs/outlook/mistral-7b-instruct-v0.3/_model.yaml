@@ -1,0 +1,11 @@
+#
+# Model override for the mistral-7b-instruct-v0.3 outlook probe -- included last (after
+# the dataset _task.yaml) by every block config in this directory tree,
+# so this is the only place model.name needs to change to point the
+# whole probe at a different checkpoint. See models/mistral-7b-instruct-v0.3/ (downloaded
+# via scripts/aggregate_other_models.py's sibling download script).
+#
+
+fixed:
+
+  model.name: mistral-7b-instruct-v0.3
