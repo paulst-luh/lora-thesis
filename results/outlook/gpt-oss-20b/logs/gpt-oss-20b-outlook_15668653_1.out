@@ -1,0 +1,59 @@
+[transformers] MXFP4 quantization requires Triton: CUDA requires Triton >= 3.4.0, XPU/CPU requires Triton >= 3.5.0. Please install triton: `pip install triton`. We will default to dequantizing the model to bf16.
+STARTING EXPERIMENT
+Total experiments: 1
+
+--- Running experiment 0 ---
+Loading model...
+Loading weights:   0%|          | 0/411 [00:00<?, ?it/s]Loading weights:   0%|          | 1/411 [00:13<1:30:10, 13.20s/it]Loading weights:   1%|          | 5/411 [00:16<17:57,  2.65s/it]  Loading weights:   2%|▏         | 7/411 [00:17<12:03,  1.79s/it]Loading weights:   5%|▌         | 22/411 [00:20<03:30,  1.85it/s]Loading weights:   6%|▌         | 24/411 [00:26<05:23,  1.20it/s]Loading weights:   9%|▉         | 39/411 [00:29<03:02,  2.03it/s]Loading weights:  10%|▉         | 41/411 [00:31<03:14,  1.90it/s]Loading weights:  14%|█▎        | 56/411 [00:32<01:46,  3.32it/s]Loading weights:  14%|█▍        | 58/411 [00:33<01:45,  3.33it/s]Loading weights:  18%|█▊        | 73/411 [00:34<00:59,  5.71it/s]Loading weights:  18%|█▊        | 75/411 [00:36<01:20,  4.17it/s]Loading weights:  22%|██▏       | 90/411 [00:37<00:57,  5.54it/s]Loading weights:  22%|██▏       | 92/411 [00:38<01:06,  4.78it/s]Loading weights:  38%|███▊      | 158/411 [00:39<00:11, 22.85it/s]Loading weights:  51%|█████▏    | 211/411 [00:39<00:04, 41.96it/s]Loading weights:  67%|██████▋   | 277/411 [00:39<00:01, 72.94it/s]Loading weights:  80%|████████  | 330/411 [00:39<00:00, 103.25it/s]Loading weights:  96%|█████████▋| 396/411 [00:39<00:00, 149.62it/s]Loading weights: 100%|██████████| 411/411 [00:39<00:00, 10.41it/s] 
+[RANK 0] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Running full fine-tuning (FFT)...
+Loading dataset...
+Starting training...
+  0%|          | 0/939 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/experiments/runner.py", line 73, in <module>
+    run_experiment(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/experiments/runner.py", line 43, in run_experiment
+    train(experiments[index])
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/train.py", line 228, in train
+    train_result = trainer.train()
+                   ^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1427, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1509, in _inner_training_loop
+    self._run_epoch(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1737, in _run_epoch
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1937, in training_step
+    self.accelerator.backward(loss, **kwargs)
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/accelerate/accelerator.py", line 2838, in backward
+    loss.backward(**kwargs)
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/_tensor.py", line 648, in backward
+    torch.autograd.backward(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/autograd/__init__.py", line 353, in backward
+    _engine_run_backward(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/autograd/function.py", line 307, in apply
+    return user_fn(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/_library/autograd.py", line 77, in backward
+    result = info._backward_fn(ctx, *grads)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/integrations/moe.py", line 230, in _grouped_mm_fallback_backward
+    grad_weight = torch.zeros_like(weight)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1014.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 129.69 MiB is free. Including non-PyTorch memory, this process has 79.12 GiB memory in use. Of the allocated memory 76.00 GiB is allocated by PyTorch, and 2.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/939 [00:05<?, ?it/s]
+============ Job Information ===================================================
+Submitted: 2026-09-01T01:17:52
+Started: 2026-09-01T01:17:55
+Ended: 2026-09-01T01:19:45
+Elapsed: 2 min, Limit: 480 min, Difference: 478 min
+CPUs: 8, Nodes: 1
+Estimated credit Consumption: 5.00 core-hours
+================================================================================

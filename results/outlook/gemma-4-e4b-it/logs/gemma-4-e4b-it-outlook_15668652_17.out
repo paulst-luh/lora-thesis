@@ -1,0 +1,51 @@
+STARTING EXPERIMENT
+Total experiments: 3
+
+--- Running experiment 1 ---
+Loading model...
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:   3%|▎         | 54/2076 [00:00<00:04, 484.34it/s]Loading weights:   5%|▍         | 103/2076 [00:00<00:05, 390.65it/s]Loading weights:   9%|▉         | 189/2076 [00:00<00:03, 559.62it/s]Loading weights:  13%|█▎        | 267/2076 [00:00<00:02, 617.05it/s]Loading weights:  18%|█▊        | 374/2076 [00:00<00:02, 738.00it/s]Loading weights:  22%|██▏       | 450/2076 [00:00<00:02, 730.80it/s]Loading weights:  25%|██▌       | 525/2076 [00:00<00:02, 720.70it/s]Loading weights:  29%|██▉       | 598/2076 [00:00<00:02, 710.01it/s]Loading weights:  33%|███▎      | 685/2076 [00:01<00:01, 750.12it/s]Loading weights:  37%|███▋      | 761/2076 [00:11<00:53, 24.56it/s] Loading weights:  37%|███▋      | 775/2076 [00:11<00:49, 26.06it/s]Loading weights:  40%|████      | 831/2076 [00:12<00:40, 31.05it/s]Loading weights:  42%|████▏     | 872/2076 [00:12<00:34, 35.26it/s]Loading weights:  43%|████▎     | 903/2076 [00:13<00:30, 37.98it/s]Loading weights:  45%|████▍     | 926/2076 [00:13<00:27, 41.49it/s]Loading weights:  46%|████▌     | 945/2076 [00:14<00:26, 43.22it/s]Loading weights:  46%|████▌     | 960/2076 [00:14<00:24, 45.40it/s]Loading weights:  47%|████▋     | 972/2076 [00:14<00:23, 46.71it/s]Loading weights:  47%|████▋     | 982/2076 [00:14<00:24, 45.51it/s]Loading weights:  48%|████▊     | 996/2076 [00:14<00:20, 53.46it/s]Loading weights:  48%|████▊     | 1006/2076 [00:15<00:18, 56.72it/s]Loading weights:  49%|████▉     | 1015/2076 [00:15<00:20, 50.67it/s]Loading weights:  50%|████▉     | 1030/2076 [00:15<00:16, 61.97it/s]Loading weights:  50%|█████     | 1039/2076 [00:15<00:17, 60.14it/s]Loading weights:  50%|█████     | 1047/2076 [00:15<00:16, 62.75it/s]Loading weights:  51%|█████     | 1055/2076 [00:15<00:16, 60.77it/s]Loading weights:  51%|█████▏    | 1064/2076 [00:16<00:16, 61.73it/s]Loading weights:  52%|█████▏    | 1071/2076 [00:16<00:17, 58.86it/s]Loading weights:  52%|█████▏    | 1081/2076 [00:16<00:15, 65.66it/s]Loading weights:  52%|█████▏    | 1088/2076 [00:16<00:16, 59.12it/s]Loading weights:  53%|█████▎    | 1099/2076 [00:16<00:15, 61.35it/s]Loading weights:  54%|█████▎    | 1111/2076 [00:16<00:13, 73.69it/s]Loading weights:  54%|█████▍    | 1119/2076 [00:16<00:16, 57.37it/s]Loading weights:  55%|█████▍    | 1132/2076 [00:17<00:13, 72.25it/s]Loading weights:  55%|█████▍    | 1141/2076 [00:17<00:13, 69.85it/s]Loading weights:  55%|█████▌    | 1150/2076 [00:17<00:16, 57.19it/s]Loading weights:  56%|█████▌    | 1166/2076 [00:17<00:12, 70.57it/s]Loading weights:  57%|█████▋    | 1174/2076 [00:17<00:14, 63.84it/s]Loading weights:  57%|█████▋    | 1181/2076 [00:17<00:17, 52.62it/s]Loading weights:  57%|█████▋    | 1189/2076 [00:18<00:15, 55.69it/s]Loading weights:  58%|█████▊    | 1196/2076 [00:18<00:18, 47.22it/s]Loading weights:  58%|█████▊    | 1207/2076 [00:18<00:15, 56.41it/s]Loading weights:  58%|█████▊    | 1214/2076 [00:18<00:16, 51.20it/s]Loading weights:  59%|█████▉    | 1222/2076 [00:18<00:15, 55.26it/s]Loading weights:  59%|█████▉    | 1228/2076 [00:18<00:16, 49.90it/s]Loading weights:  60%|█████▉    | 1236/2076 [00:19<00:19, 43.47it/s]Loading weights:  60%|█████▉    | 1245/2076 [00:19<00:17, 46.25it/s]Loading weights:  60%|██████    | 1250/2076 [00:19<00:20, 40.72it/s]Loading weights:  61%|██████    | 1264/2076 [00:19<00:13, 59.17it/s]Loading weights:  61%|██████    | 1271/2076 [00:19<00:14, 56.26it/s]Loading weights:  62%|██████▏   | 1279/2076 [00:19<00:16, 46.98it/s]Loading weights:  62%|██████▏   | 1292/2076 [00:20<00:12, 62.85it/s]Loading weights:  63%|██████▎   | 1300/2076 [00:20<00:13, 58.24it/s]Loading weights:  63%|██████▎   | 1307/2076 [00:20<00:14, 52.93it/s]Loading weights:  63%|██████▎   | 1317/2076 [00:20<00:12, 61.95it/s]Loading weights:  64%|██████▍   | 1325/2076 [00:20<00:14, 52.00it/s]Loading weights:  64%|██████▍   | 1334/2076 [00:20<00:14, 52.87it/s]Loading weights:  65%|██████▍   | 1340/2076 [00:21<00:14, 49.60it/s]Loading weights:  65%|██████▍   | 1348/2076 [00:21<00:13, 52.44it/s]Loading weights:  65%|██████▌   | 1354/2076 [00:21<00:14, 48.39it/s]Loading weights:  66%|██████▌   | 1362/2076 [00:21<00:13, 51.57it/s]Loading weights:  66%|██████▌   | 1368/2076 [00:21<00:14, 48.11it/s]Loading weights:  66%|██████▋   | 1376/2076 [00:21<00:12, 55.28it/s]Loading weights:  67%|██████▋   | 1382/2076 [00:21<00:13, 52.13it/s]Loading weights:  67%|██████▋   | 1390/2076 [00:21<00:11, 58.42it/s]Loading weights:  67%|██████▋   | 1397/2076 [00:22<00:12, 53.98it/s]Loading weights:  68%|██████▊   | 1404/2076 [00:22<00:11, 57.63it/s]Loading weights:  68%|██████▊   | 1411/2076 [00:22<00:12, 54.27it/s]Loading weights:  68%|██████▊   | 1417/2076 [00:22<00:12, 50.93it/s]Loading weights:  73%|███████▎  | 1522/2076 [00:22<00:01, 293.52it/s]Loading weights:  80%|████████  | 1671/2076 [00:22<00:00, 601.59it/s]Loading weights:  87%|████████▋ | 1810/2076 [00:22<00:00, 812.52it/s]Loading weights:  94%|█████████▍| 1960/2076 [00:22<00:00, 987.77it/s]Loading weights: 100%|██████████| 2076/2076 [00:23<00:00, 954.39it/s]Loading weights: 100%|██████████| 2076/2076 [00:23<00:00, 90.20it/s] 
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/experiments/runner.py", line 73, in <module>
+    run_experiment(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/experiments/runner.py", line 43, in run_experiment
+    train(experiments[index])
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/train.py", line 106, in train
+    model = apply_lora(model, config)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/models/lora_setup.py", line 131, in apply_lora
+    model = get_peft_model(
+            ^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/mapping_func.py", line 122, in get_peft_model
+    return MODEL_TYPE_TO_PEFT_MODEL_MAPPING[peft_config.task_type](
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/peft_model.py", line 1955, in __init__
+    super().__init__(model, peft_config, adapter_name, **kwargs)
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/peft_model.py", line 129, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/tuners/tuners_utils.py", line 315, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage, state_dict=state_dict)
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/tuners/tuners_utils.py", line 913, in inject_adapter
+    self._create_and_replace(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/tuners/lora/model.py", line 269, in _create_and_replace
+    new_module = self._create_new_module(lora_config, adapter_name, target, device_map=device_map, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/peft/tuners/lora/model.py", line 424, in _create_new_module
+    raise ValueError(
+ValueError: Target module Gemma4ClippableLinear(
+  (linear): Linear(in_features=768, out_features=768, bias=False)
+) is not supported. Currently, only the following modules are supported: `torch.nn.Linear`, `torch.nn.Embedding`, `torch.nn.Conv1d`, `torch.nn.Conv2d`, `torch.nn.Conv3d`, `transformers.pytorch_utils.Conv1D`, `torch.nn.MultiheadAttention.`.
+Applying LoRA...
+LoRA target = attention
+Modules = ['q_proj', 'k_proj', 'v_proj', 'o_proj']
+Dataset = squad
+============ Job Information ===================================================
+Submitted: 2026-09-01T01:17:52
+Started: 2026-09-01T01:54:48
+Ended: 2026-09-01T01:56:11
+Elapsed: 2 min, Limit: 480 min, Difference: 478 min
+CPUs: 8, Nodes: 1
+Estimated credit Consumption: 5.00 core-hours
+================================================================================

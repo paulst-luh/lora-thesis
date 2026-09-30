@@ -1,0 +1,4 @@
+dataset,pipeline,adaptation,lora_target,rank,alpha,scaling_ratio,learning_rate,subset_size,regime,training_regime,seed,metric,parse_failure_rate,runtime_s,peak_mem_gb,trainable_params,optimizer_steps,experiment_name,experiment_group,source_file
+squad,prompting,none,,,,,5e-5,1,low,iso_epoch,42,0.3780537664930338,0.0,,14.3208646774292,0,0,squad_prompting_zeroshot,squad_prompting,results/squad/prompting_zeroshot/metrics/result_1784918599.json
+squad,prompting,none,,,,,5e-5,1,low,iso_epoch,43,0.3780537664930338,0.0,,14.3208646774292,0,0,squad_prompting_zeroshot,squad_prompting,results/squad/prompting_zeroshot/metrics/result_1784918783.json
+squad,prompting,none,,,,,5e-5,1,low,iso_epoch,44,0.3780537664930338,0.0,,14.3208646774292,0,0,squad_prompting_zeroshot,squad_prompting,results/squad/prompting_zeroshot/metrics/result_1784919147.json
