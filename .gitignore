@@ -1,5 +1,4 @@
 data/
-results/models/
 *.pt
 *.bin
 *.log
