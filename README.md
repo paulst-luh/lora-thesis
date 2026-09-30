@@ -1,6 +1,5 @@
-# lora-thesis
+# Systematic Ablation Study of LoRA Hyperparameters
 
-Master's thesis: **Systematic Ablation Study of LoRA Hyperparameters.**
 Fine-tunes Qwen2-7B with LoRA on four tasks (MNLI, SQuAD, CoNLL-2003,
 GSM8K) and studies how rank, alpha, target modules, learning rate and
 dataset size interact, compared against full fine-tuning (FFT) and a
