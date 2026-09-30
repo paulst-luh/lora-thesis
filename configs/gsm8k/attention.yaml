@@ -1,0 +1,48 @@
+include: ../tasks/reasoning.yaml
+
+experiment_group: gsm8k
+experiment_name: gsm8k_attention
+
+grid:
+
+  lora_config:
+    - {r: 32, alpha: 32}
+    - {r: 32, alpha: 64}
+    - {r: 64, alpha: 64}
+    - {r: 64, alpha: 128}
+    - {r: 128, alpha: 128}
+    - {r: 128, alpha: 256}
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+    - 5e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/gsm8k/attention
+
+  model.name: qwen2-7b
+
+  task.name: reasoning
+  dataset.name: gsm8k
+  adaptation: lora
+  lora.target: attention
+  pipeline.type: prompting
+
+  dataset.data_seed: 42
+
+  dataset.subset_size: 5000
+  training.batch_size: 8
+  training.grad_accum: 2
+  training.epochs: 3
+  training.weight_decay: 0.01
+  training.warmup_ratio: 0.03
+  training.loss_on_completion: true
+  training.lr_scheduler_type: cosine
+  training.optimizer: paged_adamw_8bit

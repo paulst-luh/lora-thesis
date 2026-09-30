@@ -1,0 +1,46 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_ladder_isoepoch
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  lora_config:
+    - {r: 4, alpha: 8}
+    - {r: 8, alpha: 16}
+    - {r: 16, alpha: 32}
+    - {r: 32, alpha: 64}
+    - {r: 64, alpha: 128}
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/squad/prompting_ladder_isoepoch
+
+  adaptation: lora
+  lora.target: attention
+
+  #
+  # No training.regime set -> defaults to iso_epoch (see
+  # resolve_schedule in src/utils/training.py): fixed epoch count,
+  # optimizer steps scale with subset_size. Compare against
+  # 21_ladder_isostep.yaml, which holds steps fixed instead, to
+  # separate "more data" from "more steps" as competing explanations
+  # for any effective-rank trend seen across this ladder.
+  #
+
+  training.epochs: 3

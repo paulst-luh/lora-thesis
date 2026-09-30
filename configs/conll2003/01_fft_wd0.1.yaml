@@ -1,0 +1,40 @@
+include: _task.yaml
+
+experiment_group: conll2003_prompting
+experiment_name: conll2003_prompting_fft_wd0.1
+
+#
+# Diagnostic follow-up to 01_fft.yaml: the shared configs/_base.yaml
+# sets training.weight_decay=0.01 for every adaptation, including FFT.
+# An earlier (separate) head-pipeline study deliberately used 0.1 for
+# FFT specifically, 10x LoRA's -- full fine-tuning has far more
+# capacity to overfit a small (5000-example) training set than a
+# rank-constrained adapter, so it plausibly needs stronger
+# regularization. That differentiation was lost when this study's
+# shared base was written. This config reruns the exact same (lr,
+# seed) grid as 01_fft.yaml with only weight_decay changed, so its
+# effect can be read off at matched learning rates against 01_fft.yaml's
+# results for the same dataset, rather than changing two things at once.
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/conll2003/prompting_fft_wd0.1
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 3
+  training.weight_decay: 0.1

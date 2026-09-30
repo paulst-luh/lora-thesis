@@ -1,0 +1,20 @@
+include:
+  - ../../../gsm8k/_task.yaml
+  - ../_model.yaml
+
+experiment_group: gemma-4-e4b-it_outlook
+experiment_name: gemma-4-e4b-it_outlook_gsm8k_00_zeroshot
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/outlook/gemma-4-e4b-it/gsm8k/00_zeroshot
+
+  adaptation: none
+
+  dataset.subset_size: 1
+  training.learning_rate: 5e-05
+  training.epochs: 1

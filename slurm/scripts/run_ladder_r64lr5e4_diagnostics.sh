@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sbatch slurm/mnli/run_20_ladder_isoepoch_r64_lr5e4.slurm
+sbatch slurm/mnli/run_21_ladder_isostep_r64_lr5e4.slurm
+sbatch slurm/mnli/run_22_ladder_isoepoch_full_r64_lr5e4.slurm
+sbatch slurm/mnli/run_23_ladder_isostep_full_r64_lr5e4.slurm
+
+sbatch slurm/squad/run_20_ladder_isoepoch_r64_lr5e4.slurm
+sbatch slurm/squad/run_21_ladder_isostep_r64_lr5e4.slurm
+sbatch slurm/squad/run_22_ladder_isoepoch_full_r64_lr5e4.slurm
+sbatch slurm/squad/run_23_ladder_isostep_full_r64_lr5e4.slurm

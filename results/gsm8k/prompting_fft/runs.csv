@@ -1,0 +1,10 @@
+dataset,pipeline,adaptation,lora_target,rank,alpha,scaling_ratio,learning_rate,subset_size,regime,training_regime,seed,metric,parse_failure_rate,runtime_s,peak_mem_gb,trainable_params,optimizer_steps,experiment_name,experiment_group,source_file
+gsm8k,prompting,fft,,,,,1e-5,5000,low,iso_epoch,42,0.71,0.0,1659.7345,36.85706806182861,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784955183.json
+gsm8k,prompting,fft,,,,,1e-5,5000,low,iso_epoch,43,0.694,0.0,1672.9021,36.85495901107788,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784956660.json
+gsm8k,prompting,fft,,,,,1e-5,5000,low,iso_epoch,44,0.716,0.0,1656.3992,36.82507276535034,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784958557.json
+gsm8k,prompting,fft,,,,,3e-5,5000,low,iso_epoch,43,0.642,0.0,1666.6384,36.85495901107788,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784960139.json
+gsm8k,prompting,fft,,,,,3e-5,5000,low,iso_epoch,44,0.66,0.0,1667.9538,36.82507276535034,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784960347.json
+gsm8k,prompting,fft,,,,,3e-5,5000,low,iso_epoch,42,0.67,0.0,1680.7346,36.85706806182861,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784960756.json
+gsm8k,prompting,fft,,,,,5e-5,5000,low,iso_epoch,42,0.576,0.0,1660.1982,36.85706806182861,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784961998.json
+gsm8k,prompting,fft,,,,,5e-5,5000,low,iso_epoch,43,0.598,0.0,1666.7972,36.85495901107788,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784963688.json
+gsm8k,prompting,fft,,,,,5e-5,5000,low,iso_epoch,44,0.576,0.0,1663.171,36.82507276535034,7615616512,939,gsm8k_prompting_fft,gsm8k_prompting,results/gsm8k/prompting_fft/metrics/result_1784963829.json

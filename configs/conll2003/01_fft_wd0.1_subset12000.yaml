@@ -1,0 +1,39 @@
+include: _task.yaml
+
+experiment_group: conll2003_prompting
+experiment_name: conll2003_prompting_fft_wd0.1_subset12000
+
+#
+# Diagnostic follow-up: FFT already reaches near-zero train_loss at
+# subset_size=5000/3 epochs (see conversation record) -- so more
+# *passes* over the same 5000 examples (01_fft_wd0.1_epochs6.yaml)
+# probably won't help. This instead gives FFT more DISTINCT examples
+# at the same 3 epochs. CoNLL2003's training pool is only 14041
+# examples total (checked directly via datasets.load_from_disk), so
+# unlike mnli/squad this can't go to 20000 -- nested_subset would
+# silently clamp it to 14041 anyway (min(subset_size, total_len)), so
+# 12000 is used explicitly instead, honestly reflecting what's actually
+# tested here (~2.4x the original 5000, not 4x).
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/conll2003/prompting_fft_wd0.1_subset12000
+
+  adaptation: fft
+
+  dataset.subset_size: 12000
+  training.epochs: 3
+  training.weight_decay: 0.1

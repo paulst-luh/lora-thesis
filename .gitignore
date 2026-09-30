@@ -1,0 +1,13 @@
+data/
+*.pt
+*.bin
+*.log
+
+# Local environment, model weights and caches
+lora-env/
+models/
+__pycache__/
+.ipynb_checkpoints/
+
+# Personal tokens (e.g. HF_TOKEN) must never be committed
+.env

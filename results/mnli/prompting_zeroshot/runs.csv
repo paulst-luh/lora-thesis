@@ -1,0 +1,4 @@
+dataset,pipeline,adaptation,lora_target,rank,alpha,scaling_ratio,learning_rate,subset_size,regime,training_regime,seed,metric,parse_failure_rate,runtime_s,peak_mem_gb,trainable_params,optimizer_steps,experiment_name,experiment_group,source_file
+mnli,prompting,none,,,,,5e-5,1,low,iso_epoch,42,0.1800607386810489,0.0,,14.29489517211914,0,0,mnli_prompting_zeroshot,mnli_prompting,results/mnli/prompting_zeroshot/metrics/result_1784918235.json
+mnli,prompting,none,,,,,5e-5,1,low,iso_epoch,43,0.1800607386810489,0.0,,14.29489517211914,0,0,mnli_prompting_zeroshot,mnli_prompting,results/mnli/prompting_zeroshot/metrics/result_1784918365.json
+mnli,prompting,none,,,,,5e-5,1,low,iso_epoch,44,0.1800607386810489,0.0,,14.29489517211914,0,0,mnli_prompting_zeroshot,mnli_prompting,results/mnli/prompting_zeroshot/metrics/result_1784918370.json

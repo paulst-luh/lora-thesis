@@ -1,0 +1,9 @@
+include: ../_base.yaml
+
+fixed:
+
+  task.name: reasoning
+  dataset.name: gsm8k
+
+  dataset.max_seq_length: 768
+  eval.max_new_tokens: 256

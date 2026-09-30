@@ -1,0 +1,51 @@
+include: _task.yaml
+
+experiment_group: mnli_prompting
+experiment_name: mnli_prompting_ladder_isoepoch_full
+
+#
+# Extension of 20_ladder_isoepoch.yaml to lora.target=full. The
+# original ladder deliberately fixed lora.target=attention to isolate
+# dataset size as the only structural factor -- but the main sweep
+# showed "full" has more (and worse) partial-collapse cells than
+# "attention" at fixed subset_size=5000 (see 12_main_full_riskyseeds*
+# configs), so it's an open question whether full's collapse-proneness
+# is driven by the same "more optimizer steps at fixed high capacity"
+# mechanism the attention ladder already demonstrated (mnli r=64:
+# 0.864->0.748->0.597->0.563 as subset_size grows under iso_epoch), or
+# something specific to touching MLP weights that attention doesn't
+# capture. Otherwise identical grid to 20_ladder_isoepoch.yaml.
+#
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  lora_config:
+    - {r: 4, alpha: 8}
+    - {r: 8, alpha: 16}
+    - {r: 16, alpha: 32}
+    - {r: 32, alpha: 64}
+    - {r: 64, alpha: 128}
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/mnli/prompting_ladder_isoepoch_full
+
+  adaptation: lora
+  lora.target: full
+
+  training.epochs: 3

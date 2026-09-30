@@ -1,0 +1,20 @@
+include:
+  - ../../../mnli/_task.yaml
+  - ../_model.yaml
+
+experiment_group: gemma-3-1b_test
+experiment_name: gemma-3-1b_test_mnli_01_fft
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/test/gemma-3-1b/mnli/01_fft
+
+  adaptation: fft
+
+  dataset.subset_size: 200
+  training.epochs: 1
+  training.learning_rate: 1e-05

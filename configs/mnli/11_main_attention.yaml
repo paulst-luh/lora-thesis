@@ -1,0 +1,36 @@
+include: _task.yaml
+
+experiment_group: mnli_prompting
+experiment_name: mnli_prompting_main_attention
+
+grid:
+
+  lora_config:
+    - {r: 4, alpha: 8}      # scaling_ratio 2
+    - {r: 8, alpha: 8}      # scaling_ratio 1
+    - {r: 8, alpha: 16}     # scaling_ratio 2
+    - {r: 16, alpha: 16}    # scaling_ratio 1
+    - {r: 16, alpha: 32}    # scaling_ratio 2
+    - {r: 32, alpha: 32}    # scaling_ratio 1
+    - {r: 32, alpha: 64}    # scaling_ratio 2
+    - {r: 64, alpha: 128}   # scaling_ratio 2
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+    - 5e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/mnli/prompting_main_attention
+
+  adaptation: lora
+  lora.target: attention
+
+  dataset.subset_size: 5000
+  training.epochs: 3

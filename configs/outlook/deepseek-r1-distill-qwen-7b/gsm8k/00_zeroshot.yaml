@@ -1,0 +1,20 @@
+include:
+  - ../../../gsm8k/_task.yaml
+  - ../_model.yaml
+
+experiment_group: deepseek-r1-distill-qwen-7b_outlook
+experiment_name: deepseek-r1-distill-qwen-7b_outlook_gsm8k_00_zeroshot
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/outlook/deepseek-r1-distill-qwen-7b/gsm8k/00_zeroshot
+
+  adaptation: none
+
+  dataset.subset_size: 1
+  training.learning_rate: 5e-05
+  training.epochs: 1

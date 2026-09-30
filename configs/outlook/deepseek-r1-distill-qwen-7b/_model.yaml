@@ -1,0 +1,11 @@
+#
+# Model override for the deepseek-r1-distill-qwen-7b outlook probe -- included last (after
+# the dataset _task.yaml) by every block config in this directory tree,
+# so this is the only place model.name needs to change to point the
+# whole probe at a different checkpoint. See models/deepseek-r1-distill-qwen-7b/ (downloaded
+# via scripts/aggregate_other_models.py's sibling download script).
+#
+
+fixed:
+
+  model.name: deepseek-r1-distill-qwen-7b

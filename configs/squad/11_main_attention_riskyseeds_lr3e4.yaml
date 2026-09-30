@@ -1,0 +1,40 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_main_attention_riskyseeds_lr3e4
+
+#
+# Diagnostic follow-up, same logic as the FFT moreseeds round: at
+# (r=64,alpha=128,lr=3e-4) for lora.target=attention, the existing
+# 3-seed main sweep already shows a partial-collapse signature ([0.850,
+# 0.845, 0.060] -- 1 of 3 seeds diverged). With only 3 seeds there's no
+# way to tell a reliable collapse rate from bad luck. These are 7 NEW
+# seeds (45-51), not repeats of 42/43/44 -- combined with
+# 11_main_attention.yaml's 3 seeds, that's 10 total for this cell.
+#
+
+grid:
+
+  lora_config:
+    - {r: 64, alpha: 128}
+
+  seed:
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+    - 50
+    - 51
+
+fixed:
+
+  output.root: results/squad/prompting_main_attention_riskyseeds_lr3e4
+
+  adaptation: lora
+  lora.target: attention
+
+  training.learning_rate: 3e-4
+
+  dataset.subset_size: 5000
+  training.epochs: 3

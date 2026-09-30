@@ -1,0 +1,57 @@
+include: _task.yaml
+
+experiment_group: gsm8k_prompting
+experiment_name: gsm8k_prompting_main_full_ratio1_extend
+
+#
+# Grid completion for 12_main_full.yaml: its eight (rank, alpha)
+# pairs cover scaling_ratio 1 and 2 at r=8/16/32, but only ratio 2 at
+# the two rank extremes (r=4 -> alpha=8, r=64 -> alpha=128). These are
+# the two missing ratio-1 pairs, so every rank in {4, 8, 16, 32, 64}
+# ends up with both ratios -- a full 5 x 2 rank x scaling_ratio
+# factorial.
+#
+# Everything else is the main sweep's: same learning rates, same
+# subset_size/epochs, same seeds. These are NEW cells, so 42/43/44 are
+# reused -- unlike the *_riskyseeds configs, which add seeds 45-51 to
+# EXISTING cells. Own experiment_name (-> own block), so no figure
+# filtering on MAIN_SWEEP_BLOCKS/CORE_BLOCKS changes until these runs
+# are pooled in deliberately.
+#
+
+grid:
+
+  lora_config:
+    - {r: 4, alpha: 4}      # scaling_ratio 1
+    - {r: 64, alpha: 64}    # scaling_ratio 1
+
+  training.learning_rate:
+    - 1e-4
+    - 3e-4
+    - 5e-4
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/gsm8k/prompting_main_full_ratio1_extend
+
+  #
+  # Pinned to the exact string all 864 original main-sweep runs logged.
+  # _base.yaml has since switched to the bare "qwen2-7b", which
+  # load_model() resolves to the same models/qwen2-7b directory --
+  # identical weights -- but inheriting it would make these runs'
+  # logged config differ from their main-sweep siblings in a second,
+  # unintended key.
+  #
+
+  model.name: models/qwen2-7b
+
+  adaptation: lora
+  lora.target: full
+
+  dataset.subset_size: 5000
+  training.epochs: 3

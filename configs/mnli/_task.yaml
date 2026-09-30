@@ -1,0 +1,19 @@
+include: ../_base.yaml
+
+fixed:
+
+  task.name: classification
+  dataset.name: mnli
+
+  dataset.max_seq_length: 512
+
+  #
+  # Inert for mnli specifically: task.name == "classification" routes
+  # eval through run_constrained_choice() (verbalizer scoring), not
+  # run_prompting()'s generate() -- see src/train.py. eval.max_new_tokens
+  # is only ever read on the free-generation path, so this value is
+  # never actually consulted here; kept only for symmetry with the
+  # other three tasks' _task.yaml.
+  #
+
+  eval.max_new_tokens: 8

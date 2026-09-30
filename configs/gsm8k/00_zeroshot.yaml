@@ -1,0 +1,22 @@
+include: _task.yaml
+
+experiment_group: gsm8k_prompting
+experiment_name: gsm8k_prompting_zeroshot
+
+grid:
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/gsm8k/prompting_zeroshot
+
+  adaptation: none
+
+  dataset.subset_size: 1
+
+  training.learning_rate: 5e-5
+  training.epochs: 1

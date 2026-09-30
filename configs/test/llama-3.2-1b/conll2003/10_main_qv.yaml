@@ -1,0 +1,23 @@
+include:
+  - ../../../conll2003/_task.yaml
+  - ../_model.yaml
+
+experiment_group: llama-3.2-1b_test
+experiment_name: llama-3.2-1b_test_conll2003_10_main_qv
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/test/llama-3.2-1b/conll2003/10_main_qv
+
+  adaptation: lora
+  lora.target: qv
+
+  lora.r: 16
+  lora.alpha: 32
+  dataset.subset_size: 200
+  training.epochs: 1
+  training.learning_rate: 1e-04

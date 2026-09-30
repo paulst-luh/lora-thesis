@@ -1,0 +1,10 @@
+dataset,pipeline,adaptation,lora_target,rank,alpha,scaling_ratio,learning_rate,subset_size,regime,training_regime,seed,metric,parse_failure_rate,runtime_s,peak_mem_gb,trainable_params,optimizer_steps,experiment_name,experiment_group,source_file
+mnli,prompting,fft,,,,,1e-5,5000,low,iso_epoch,42,0.8908528775510023,0.0,843.5643,33.76710748672485,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784590712.json
+mnli,prompting,fft,,,,,1e-5,5000,low,iso_epoch,43,0.8874352780484699,0.0,963.0814,33.77183389663696,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784591059.json
+mnli,prompting,fft,,,,,1e-5,5000,low,iso_epoch,44,0.8649310293719304,0.0,966.3548,33.77117395401001,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784591061.json
+mnli,prompting,fft,,,,,3e-5,5000,low,iso_epoch,42,0.8616968712971506,0.0,1009.2294,33.76710748672485,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784592038.json
+mnli,prompting,fft,,,,,3e-5,5000,low,iso_epoch,43,0.17137196631996035,0.0,986.4675,33.77183389663696,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784592414.json
+mnli,prompting,fft,,,,,3e-5,5000,low,iso_epoch,44,0.8578681410142085,0.0,992.1124,33.77117395401001,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784592421.json
+mnli,prompting,fft,,,,,5e-5,5000,low,iso_epoch,42,0.8366282117508338,0.0,842.1027,33.76710748672485,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784593163.json
+mnli,prompting,fft,,,,,5e-5,5000,low,iso_epoch,43,0.8558066243751088,0.0,881.6424,33.77183389663696,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784593631.json
+mnli,prompting,fft,,,,,5e-5,5000,low,iso_epoch,44,0.8176581771479925,0.0,885.1363,33.77117395401001,7615616512,939,mnli_prompting_fft,mnli_prompting,results/mnli/prompting_fft/metrics/result_1784593633.json

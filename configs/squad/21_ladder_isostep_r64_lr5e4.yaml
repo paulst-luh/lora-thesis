@@ -1,0 +1,44 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_ladder_isostep_r64_lr5e4
+
+#
+# Diagnostic follow-up: see 20_ladder_isoepoch_r64_lr5e4.yaml for the
+# rationale -- tests whether iso_step's collapse-free result (0/480
+# across the existing full+attention ladders) holds at lr=5e-4, the
+# study's actual riskiest learning rate, not just up to 3e-4.
+#
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/squad/prompting_ladder_isostep_r64_lr5e4
+
+  adaptation: lora
+  lora.target: attention
+  lora.r: 64
+  lora.alpha: 128
+
+  training.learning_rate: 5e-4
+
+  #
+  # iso_step: every ladder rung sees the identical number of optimizer
+  # steps (938). training.epochs is deliberately left unset: see
+  # 21_ladder_isostep.yaml.
+  #
+
+  training.regime: iso_step
+  training.max_steps: 938

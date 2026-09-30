@@ -1,0 +1,47 @@
+include: _task.yaml
+
+experiment_group: conll2003_prompting
+experiment_name: conll2003_prompting_fft_wd0.1_adamw32bit
+
+#
+# Diagnostic follow-up: paged_adamw_8bit (used everywhere else in this
+# study) quantizes optimizer momentum/variance to 8 bits, adding noise
+# to every update. That noise is proportionally larger relative to an
+# already-small gradient signal at FFT's low learning rates than at
+# LoRA's higher ones, and FFT touches all 7B parameters vs LoRA's few
+# million -- so if 8-bit quantization noise is contributing to FFT's
+# underwhelming results, this is where it would show. paged_adamw_32bit
+# keeps full-precision (fp32) optimizer states -- removing that noise
+# -- while keeping bitsandbytes' CPU-offload paging as a safety net
+# against hard OOM, unlike a bare torch AdamW.
+#
+# VRAM math (measured, not estimated): this study's FFT runs use
+# ~33-40GB peak elsewhere with the 8-bit optimizer. Full fp32 optimizer
+# states for 7B params are ~42GB larger -- projected ~75-80GB here,
+# which should fit an 80GB A100 but with little headroom left for
+# activations. Expect some CPU paging and a real speed penalty; the
+# accompanying SLURM script budgets accordingly.
+#
+
+grid:
+
+  training.learning_rate:
+    - 1e-5
+    - 3e-5
+    - 5e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/conll2003/prompting_fft_wd0.1_adamw32bit
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 3
+  training.weight_decay: 0.1
+  training.optimizer: paged_adamw_32bit

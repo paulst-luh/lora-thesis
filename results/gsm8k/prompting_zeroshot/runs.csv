@@ -1,0 +1,4 @@
+dataset,pipeline,adaptation,lora_target,rank,alpha,scaling_ratio,learning_rate,subset_size,regime,training_regime,seed,metric,parse_failure_rate,runtime_s,peak_mem_gb,trainable_params,optimizer_steps,experiment_name,experiment_group,source_file
+gsm8k,prompting,none,,,,,5e-5,1,low,iso_epoch,42,0.358,0.0,,14.234532356262207,0,0,gsm8k_prompting_zeroshot,gsm8k_prompting,results/gsm8k/prompting_zeroshot/metrics/result_1784947888.json
+gsm8k,prompting,none,,,,,5e-5,1,low,iso_epoch,43,0.358,0.0,,14.234532356262207,0,0,gsm8k_prompting_zeroshot,gsm8k_prompting,results/gsm8k/prompting_zeroshot/metrics/result_1784950192.json
+gsm8k,prompting,none,,,,,5e-5,1,low,iso_epoch,44,0.358,0.0,,14.234532356262207,0,0,gsm8k_prompting_zeroshot,gsm8k_prompting,results/gsm8k/prompting_zeroshot/metrics/result_1784954081.json

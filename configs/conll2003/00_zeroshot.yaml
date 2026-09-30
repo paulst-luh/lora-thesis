@@ -1,0 +1,22 @@
+include: _task.yaml
+
+experiment_group: conll2003_prompting
+experiment_name: conll2003_prompting_zeroshot
+
+grid:
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/conll2003/prompting_zeroshot
+
+  adaptation: none
+
+  dataset.subset_size: 1
+
+  training.learning_rate: 5e-5
+  training.epochs: 1

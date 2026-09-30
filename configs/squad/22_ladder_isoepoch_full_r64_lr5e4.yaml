@@ -1,0 +1,38 @@
+include: _task.yaml
+
+experiment_group: squad_prompting
+experiment_name: squad_prompting_ladder_isoepoch_full_r64_lr5e4
+
+#
+# Diagnostic follow-up: see squad/20_ladder_isoepoch_r64_lr5e4.yaml for
+# the rationale. lora.target=full version -- full showed both higher
+# variance and a higher collapse rate than attention throughout every
+# other diagnostic in this study, so it's the more important of the
+# two targets to check at the study's riskiest learning rate.
+#
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/squad/prompting_ladder_isoepoch_full_r64_lr5e4
+
+  adaptation: lora
+  lora.target: full
+  lora.r: 64
+  lora.alpha: 128
+
+  training.learning_rate: 5e-4
+
+  training.epochs: 3

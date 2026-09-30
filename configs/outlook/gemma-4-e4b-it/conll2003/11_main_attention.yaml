@@ -1,0 +1,31 @@
+include:
+  - ../../../conll2003/_task.yaml
+  - ../_model.yaml
+
+experiment_group: gemma-4-e4b-it_outlook
+experiment_name: gemma-4-e4b-it_outlook_conll2003_11_main_attention
+
+# 3 (rank, alpha) tiers, not the main study's full 8-pair grid -- low/
+# moderate/extreme, all scaling_ratio 2, all points already tested in the
+# main Qwen2-7B study (see module docstring). learning_rate fixed at the
+# main-sweep's own winning LR across every dataset (fig_6_4e).
+
+grid:
+
+  lora_config:
+    - {r: 4, alpha: 8}      # low
+    - {r: 16, alpha: 32}      # moderate
+    - {r: 64, alpha: 128}      # extreme
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/outlook/gemma-4-e4b-it/conll2003/11_main_attention
+
+  adaptation: lora
+  lora.target: attention
+
+  dataset.subset_size: 5000
+  training.epochs: 3
+  training.learning_rate: 1e-4

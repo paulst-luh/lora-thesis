@@ -1,0 +1,54 @@
+#
+# Shared across every run in the prompting-pipeline ablation study,
+# regardless of dataset or experiment block. Layered first (lowest
+# priority) via `include:` -- <dataset>/_task.yaml and each experiment
+# file override these as needed. See src/utils/config.py:load_yaml
+# for how `include:` chains resolve and merge (later layers win).
+#
+
+fixed:
+
+  model.name: qwen2-7b
+  pipeline.type: prompting
+
+  training.optimizer: paged_adamw_8bit
+  training.batch_size: 8
+  training.grad_accum: 2
+  training.weight_decay: 0.01
+
+  #
+  # A ratio, not a fixed step count -- a fixed warmup_steps would make
+  # the warmup fraction of training a hidden function of dataset size
+  # (a 1k run and a 50k run would warm up for very different fractions
+  # of their schedule). warmup_ratio keeps that fraction constant
+  # across the whole ladder.
+  #
+
+  training.warmup_ratio: 0.03
+  training.lr_scheduler_type: cosine
+
+  #
+  # Fixed and never taken from a run's own seed grid: data_seed
+  # controls which examples get sampled into a subset (see
+  # nested_subset / nested_train_eval_split in src/utils/sampling.py).
+  # Keeping it constant across every seed in a sweep means the spread
+  # across seeds measures training stochasticity (init, dropout, batch
+  # order) alone, never which examples were drawn. It is also what
+  # makes the dataset-size ladder's subsets nest (1k subset of 5k
+  # subset of 20k subset of 50k): same permutation, same seed, just a
+  # longer prefix.
+  #
+
+  dataset.data_seed: 1234
+
+  eval.do_sample: false
+
+  #
+  # Fixed independently of data_seed and subset_size (see
+  # fixed_eval_subset in src/utils/sampling.py) -- every run in this
+  # study, whatever ladder rung or seed, is scored against the same
+  # held-out population. 500 keeps per-run generation-eval cost
+  # tractable across the full study (~1384 runs).
+  #
+
+  dataset.eval_size: 500

@@ -1,0 +1,75 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+STARTING EXPERIMENT
+Total experiments: 9
+
+--- Running experiment 4 ---
+Loading model...
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   0%|          | 1/339 [00:01<10:33,  1.87s/it]Loading weights:   1%|          | 2/339 [00:03<08:52,  1.58s/it]Loading weights:   1%|▏         | 5/339 [00:03<02:43,  2.04it/s]Loading weights:   2%|▏         | 6/339 [00:03<02:16,  2.44it/s]Loading weights:   5%|▍         | 16/339 [00:03<00:34,  9.31it/s]Loading weights:   5%|▌         | 18/339 [00:04<00:37,  8.45it/s]Loading weights:   8%|▊         | 28/339 [00:04<00:19, 15.55it/s]Loading weights:   9%|▉         | 31/339 [00:04<00:22, 13.52it/s]Loading weights:  12%|█▏        | 40/339 [00:04<00:15, 18.97it/s]Loading weights:  13%|█▎        | 43/339 [00:05<00:18, 15.74it/s]Loading weights:  15%|█▌        | 52/339 [00:05<00:13, 20.62it/s]Loading weights:  16%|█▌        | 55/339 [00:05<00:17, 16.50it/s]Loading weights:  19%|█▉        | 64/339 [00:06<00:15, 17.90it/s]Loading weights:  19%|█▉        | 66/339 [00:06<00:16, 16.78it/s]Loading weights:  22%|██▏       | 76/339 [00:06<00:13, 19.52it/s]Loading weights:  23%|██▎       | 78/339 [00:07<00:17, 15.07it/s]Loading weights:  26%|██▌       | 88/339 [00:07<00:11, 20.96it/s]Loading weights:  27%|██▋       | 91/339 [00:07<00:15, 16.41it/s]Loading weights:  29%|██▉       | 100/339 [00:08<00:11, 21.05it/s]Loading weights:  30%|███       | 103/339 [00:08<00:14, 16.62it/s]Loading weights:  33%|███▎      | 112/339 [00:08<00:10, 21.26it/s]Loading weights:  34%|███▍      | 115/339 [00:09<00:13, 16.84it/s]Loading weights:  37%|███▋      | 124/339 [00:09<00:09, 23.28it/s]Loading weights:  37%|███▋      | 127/339 [00:09<00:11, 19.03it/s]Loading weights:  40%|████      | 136/339 [00:10<00:12, 16.76it/s]Loading weights:  43%|████▎     | 147/339 [00:10<00:08, 22.80it/s]Loading weights:  44%|████▍     | 150/339 [00:10<00:10, 18.34it/s]Loading weights:  47%|████▋     | 160/339 [00:11<00:07, 23.65it/s]Loading weights:  48%|████▊     | 163/339 [00:11<00:09, 18.53it/s]Loading weights:  51%|█████     | 172/339 [00:11<00:08, 19.32it/s]Loading weights:  52%|█████▏    | 175/339 [00:12<00:10, 16.10it/s]Loading weights:  54%|█████▍    | 184/339 [00:12<00:07, 20.79it/s]Loading weights:  55%|█████▌    | 187/339 [00:12<00:08, 17.02it/s]Loading weights:  58%|█████▊    | 196/339 [00:13<00:06, 21.95it/s]Loading weights:  59%|█████▊    | 199/339 [00:13<00:07, 17.70it/s]Loading weights:  61%|██████▏   | 208/339 [00:13<00:05, 22.26it/s]Loading weights:  62%|██████▏   | 211/339 [00:14<00:07, 17.77it/s]Loading weights:  65%|██████▍   | 219/339 [00:14<00:05, 21.45it/s]Loading weights:  65%|██████▌   | 222/339 [00:14<00:06, 17.08it/s]Loading weights:  68%|██████▊   | 232/339 [00:14<00:04, 23.17it/s]Loading weights:  69%|██████▉   | 235/339 [00:15<00:05, 18.15it/s]Loading weights:  72%|███████▏  | 244/339 [00:15<00:04, 22.84it/s]Loading weights:  73%|███████▎  | 247/339 [00:15<00:05, 18.01it/s]Loading weights:  76%|███████▌  | 256/339 [00:16<00:03, 22.87it/s]Loading weights:  76%|███████▋  | 259/339 [00:16<00:04, 17.97it/s]Loading weights:  79%|███████▉  | 268/339 [00:16<00:03, 22.38it/s]Loading weights:  80%|███████▉  | 271/339 [00:17<00:03, 17.80it/s]Loading weights:  83%|████████▎ | 280/339 [00:17<00:02, 22.80it/s]Loading weights:  83%|████████▎ | 283/339 [00:17<00:03, 17.94it/s]Loading weights:  86%|████████▌ | 292/339 [00:17<00:02, 22.77it/s]Loading weights:  87%|████████▋ | 295/339 [00:18<00:02, 18.01it/s]Loading weights:  90%|████████▉ | 304/339 [00:18<00:01, 22.93it/s]Loading weights:  91%|█████████ | 307/339 [00:18<00:01, 18.06it/s]Loading weights:  93%|█████████▎| 316/339 [00:19<00:01, 16.51it/s]Loading weights:  97%|█████████▋| 328/339 [00:19<00:00, 23.33it/s]Loading weights:  98%|█████████▊| 331/339 [00:20<00:00, 18.76it/s]Loading weights: 100%|██████████| 339/339 [00:20<00:00, 16.85it/s]
+[RANK 0] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Running full fine-tuning (FFT)...
+Loading dataset...
+Starting training...
+  0%|          | 0/939 [00:00<?, ?it/s]  0%|          | 1/939 [00:12<3:12:11, 12.29s/it]Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/experiments/runner.py", line 73, in <module>
+    run_experiment(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/experiments/runner.py", line 43, in run_experiment
+    train(experiments[index])
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/src/train.py", line 222, in train
+    train_result = trainer.train()
+                   ^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1427, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1509, in _inner_training_loop
+    self._run_epoch(
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1737, in _run_epoch
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1909, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/trainer.py", line 1981, in compute_loss
+    outputs = model(**inputs)
+              ^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/accelerate/utils/operations.py", line 823, in forward
+    return model_forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/accelerate/utils/operations.py", line 811, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/utils/generic.py", line 887, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 479, in forward
+    loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/loss/loss_utils.py", line 66, in ForCausalLMLoss
+    loss = fixed_cross_entropy(logits, shift_labels, num_items_in_batch, ignore_index, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/transformers/loss/loss_utils.py", line 36, in fixed_cross_entropy
+    loss = nn.functional.cross_entropy(source, target, ignore_index=ignore_index, reduction=reduction)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/vast-kisski/home/paul.steinbrink01/u27587/lora-thesis/lora-env/lib/python3.11/site-packages/torch/nn/functional.py", line 3494, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 846.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 543.69 MiB is free. Including non-PyTorch memory, this process has 31.21 GiB memory in use. Of the allocated memory 29.98 GiB is allocated by PyTorch, and 743.04 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 1/939 [00:14<3:45:30, 14.43s/it]
+============ Job Information ===================================================
+Submitted: 2026-08-01T03:52:03
+Started: 2026-08-01T18:41:19
+Ended: 2026-08-01T18:42:46
+Elapsed: 2 min, Limit: 960 min, Difference: 958 min
+CPUs: 8, Nodes: 1
+Estimated credit Consumption: 5.00 core-hours
+================================================================================

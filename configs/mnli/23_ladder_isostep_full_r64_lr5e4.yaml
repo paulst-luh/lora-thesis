@@ -1,0 +1,42 @@
+include: _task.yaml
+
+experiment_group: mnli_prompting
+experiment_name: mnli_prompting_ladder_isostep_full_r64_lr5e4
+
+#
+# Diagnostic follow-up: see mnli/20_ladder_isoepoch_r64_lr5e4.yaml and
+# mnli/22_ladder_isoepoch_full_r64_lr5e4.yaml for the rationale. The
+# single most important cell in this whole follow-up: full + r64 +
+# lr5e-4 is exactly the combination behind every metric==0 collapse in
+# the main sweep (see docs/experimental_design_context.md §7.2/§8.2).
+# If iso_step still shows 0% collapse here, the "steps, not capacity
+# alone, drive instability" conclusion holds at the worst case tested
+# anywhere in this study.
+#
+
+grid:
+
+  dataset.subset_size:
+    - 1000
+    - 5000
+    - 20000
+    - 50000
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/mnli/prompting_ladder_isostep_full_r64_lr5e4
+
+  adaptation: lora
+  lora.target: full
+  lora.r: 64
+  lora.alpha: 128
+
+  training.learning_rate: 5e-4
+
+  training.regime: iso_step
+  training.max_steps: 938

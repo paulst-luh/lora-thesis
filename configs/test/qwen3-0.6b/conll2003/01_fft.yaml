@@ -1,0 +1,20 @@
+include:
+  - ../../../conll2003/_task.yaml
+  - ../_model.yaml
+
+experiment_group: qwen3-0.6b_test
+experiment_name: qwen3-0.6b_test_conll2003_01_fft
+
+grid:
+
+  seed: [42]
+
+fixed:
+
+  output.root: results/test/qwen3-0.6b/conll2003/01_fft
+
+  adaptation: fft
+
+  dataset.subset_size: 200
+  training.epochs: 1
+  training.learning_rate: 1e-05

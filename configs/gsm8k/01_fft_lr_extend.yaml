@@ -1,0 +1,40 @@
+include: _task.yaml
+
+experiment_group: gsm8k_prompting
+experiment_name: gsm8k_prompting_fft_lr_extend
+
+#
+# Diagnostic follow-up to 01_fft.yaml: that grid only covers
+# 1e-5/3e-5/5e-5. This checks whether FFT's true optimum sits below
+# that floor -- only the two NEW, lower learning rates are swept here
+# (1e-6, 3e-6), not the original three, to avoid rerunning the same
+# (weight_decay, lr) cell twice. Crossed with both weight_decay values
+# (0.01, matching 01_fft.yaml; 0.1, matching 01_fft_wd0.1.yaml) so this
+# doesn't have to wait on either of those results first, and so the
+# lr-range question and the weight_decay question can each be read off
+# independently rather than confounding one with the other.
+#
+
+grid:
+
+  training.weight_decay:
+    - 0.01
+    - 0.1
+
+  training.learning_rate:
+    - 1e-6
+    - 3e-6
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+fixed:
+
+  output.root: results/gsm8k/prompting_fft_lr_extend
+
+  adaptation: fft
+
+  dataset.subset_size: 5000
+  training.epochs: 3

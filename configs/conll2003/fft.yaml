@@ -1,0 +1,40 @@
+experiment_group: conll2003
+experiment_name: conll2003_fft
+
+grid:
+
+  training.learning_rate:
+    - 5e-6
+    - 1e-5
+    - 2e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+  dataset.subset_size:
+    - 5000
+    - 20000
+
+fixed:
+
+  output.root: results/conll2003/fft
+
+  model.name: qwen2-7b
+
+  task.name: token_classification
+  dataset.name: conll2003
+  adaptation: fft
+  pipeline.type: head
+
+  dataset.data_seed: 42
+
+  dataset.subset_size: 5000
+  training.batch_size: 8
+  training.grad_accum: 2
+  training.epochs: 3
+  training.weight_decay: 0.1
+  training.warmup_ratio: 0.03
+  training.lr_scheduler_type: cosine
+  training.optimizer: paged_adamw_8bit

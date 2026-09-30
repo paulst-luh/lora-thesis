@@ -1,0 +1,39 @@
+experiment_group: squad
+experiment_name: squad_fft
+
+grid:
+
+  training.learning_rate:
+    - 5e-6
+    - 1e-5
+    - 2e-5
+
+  seed:
+    - 42
+    - 43
+    - 44
+
+  dataset.subset_size:
+    - 5000
+    - 20000
+
+fixed:
+
+  output.root: results/squad/fft
+
+  model.name: qwen2-7b
+
+  task.name: qa
+  dataset.name: squad
+  adaptation: fft
+  pipeline.type: head
+
+  dataset.data_seed: 42
+
+  training.batch_size: 8
+  training.grad_accum: 2
+  training.epochs: 3
+  training.weight_decay: 0.1
+  training.warmup_ratio: 0.03
+  training.lr_scheduler_type: cosine
+  training.optimizer: paged_adamw_8bit
